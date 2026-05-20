@@ -29,7 +29,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950">
+    <div className="min-h-screen bg-gray-50">
 
       {/* ── Header ── */}
       <header className="border-b border-navy-800 bg-navy-950/95 backdrop-blur sticky top-0 z-40">
@@ -44,14 +44,14 @@ export default function App() {
               alt="EyeROV"
               className="h-8 w-auto object-contain brightness-0 invert opacity-85 group-hover:opacity-100 transition-opacity duration-200"
             />
-            <span className="text-slate-500 text-xs hidden sm:inline">Underwater Inspection ROI Calculator</span>
+            <span className="text-slate-400 text-xs hidden sm:inline before:content-['|'] before:mr-2.5 before:text-slate-700">Underwater Inspection ROI Calculator</span>
           </button>
           <div className="flex items-center gap-3">
             <a
               href="https://eyerov.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-xs text-slate-500 hover:text-teal-400 transition-colors"
+              className="flex items-center gap-1 text-xs text-slate-400 hover:text-blue-400 transition-colors"
             >
               eyerov.com <ExternalLink size={10} />
             </a>
@@ -69,15 +69,15 @@ export default function App() {
 
       {/* ── Hero (input phase only) ── */}
       {phase === PHASE.INPUT && (
-        <div className="border-b border-navy-800 bg-gradient-to-b from-navy-900 to-navy-950">
+        <div className="border-b border-gray-200 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
             <div className="max-w-2xl">
               <div className="tag mb-4">Engineering-grade cost model · Not a marketing estimate</div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 mb-3 leading-tight">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
                 Commercial Diving vs. ROV Inspection<br />
                 <span className="text-teal-400">True Cost Comparison</span>
               </h1>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
                 Built on DCIEM/NOAA dive tables, IMCA crew standards, and real market day rates. 
                 Every number is traceable to your inputs or a cited industry parameter — 
                 suitable for internal procurement justification.
@@ -89,7 +89,7 @@ export default function App() {
                   'HSE incident risk provision',
                   'Asset downtime cost modelling',
                 ].map(tag => (
-                  <span key={tag} className="text-xs bg-navy-800 text-slate-400 border border-navy-700 px-3 py-1 rounded-full">
+                  <span key={tag} className="text-xs bg-gray-100 text-gray-600 border border-gray-200 px-3 py-1.5 rounded-full flex items-center gap-1.5">
                     {tag}
                   </span>
                 ))}
@@ -115,8 +115,8 @@ export default function App() {
       </main>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-navy-800 mt-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+      <footer className="border-t border-gray-200 mt-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
           <span>© 2024 EyeROV Technologies Pvt Ltd · India's leading marine robotics company</span>
           <span>
             Cost model based on DCIEM/NOAA dive tables · IMCA D 014 · Regional market surveys 2023–2024

@@ -64,45 +64,45 @@ export default function LeadCapture({ results, inputs, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-navy-900 border border-navy-700 rounded-2xl w-full max-w-lg shadow-2xl">
+      <div className="bg-white border border-gray-200 rounded-2xl w-full max-w-lg shadow-2xl">
         
         {status === 'success' ? (
           <div className="p-8 text-center">
-            <CheckCircle size={48} className="text-teal-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-slate-100 mb-2">Assessment Request Received</h3>
-            <p className="text-sm text-slate-400 mb-1">
+            <CheckCircle size={48} className="text-teal-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Assessment Request Received</h3>
+            <p className="text-sm text-gray-600 mb-1">
               Our engineering team will review your asset profile and reach out within 1 business day.
             </p>
-            <p className="text-xs text-slate-500 mb-6">
+            <p className="text-xs text-gray-400 mb-6">
               {assetLabel} · {inputs.depthMetres}m depth · {marketLabel}
             </p>
             <button onClick={onClose} className="btn-primary mx-auto">Done</button>
           </div>
         ) : (
           <>
-            <div className="flex items-center justify-between p-6 border-b border-navy-700">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <div>
-                <h3 className="text-base font-bold text-slate-100">Get a Custom EyeROV Assessment</h3>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <h3 className="text-base font-bold text-gray-900">Get a Custom EyeROV Assessment</h3>
+                <p className="text-xs text-gray-500 mt-0.5">
                   Your asset profile is pre-filled. We just need your contact details.
                 </p>
               </div>
-              <button onClick={onClose} className="text-slate-500 hover:text-slate-300 transition-colors">
+              <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
                 <X size={18} />
               </button>
             </div>
 
             {/* Pre-filled context summary */}
-            <div className="mx-6 mt-4 p-3 bg-navy-800 border border-navy-700 rounded-lg text-xs">
-              <p className="text-teal-400 font-semibold mb-2 text-xs uppercase tracking-wider">Asset Profile (pre-filled)</p>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-slate-400">
-                <span>Asset</span><span className="text-slate-200">{assetLabel}</span>
-                <span>Depth</span><span className="text-slate-200">{inputs.depthMetres}m</span>
-                <span>Area</span><span className="text-slate-200">{inputs.inspectionArea} {ASSET_TYPES.find(a=>a.id===inputs.assetType)?.unit}</span>
-                <span>Market</span><span className="text-slate-200">{marketLabel}</span>
-                <span>Freq.</span><span className="text-slate-200">{inputs.inspectionsPerYear}× / year</span>
+            <div className="mx-6 mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs">
+              <p className="text-teal-500 font-semibold mb-2 text-xs uppercase tracking-wider">Asset Profile (pre-filled)</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-gray-500">
+                <span>Asset</span><span className="text-gray-800">{assetLabel}</span>
+                <span>Depth</span><span className="text-gray-800">{inputs.depthMetres}m</span>
+                <span>Area</span><span className="text-gray-800">{inputs.inspectionArea} {ASSET_TYPES.find(a=>a.id===inputs.assetType)?.unit}</span>
+                <span>Market</span><span className="text-gray-800">{marketLabel}</span>
+                <span>Freq.</span><span className="text-gray-800">{inputs.inspectionsPerYear}× / year</span>
                 <span>Est. saving</span>
-                <span className="text-teal-400 font-semibold">
+                <span className="text-teal-500 font-semibold">
                   {formatCurrency(saving, inputs.market, true)}/inspection
                 </span>
               </div>
@@ -143,7 +143,7 @@ export default function LeadCapture({ results, inputs, onClose }) {
                 {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
               </div>
               <div>
-                <label className="label">Designation <span className="text-slate-600">(optional)</span></label>
+                <label className="label">Designation <span className="text-gray-400">(optional)</span></label>
                 <input
                   className="input-field"
                   placeholder="e.g. Head of Asset Integrity"
@@ -167,7 +167,7 @@ export default function LeadCapture({ results, inputs, onClose }) {
                   <><Send size={15} /> Request Custom Assessment</>
                 )}
               </button>
-              <p className="text-xs text-slate-600 text-center">
+              <p className="text-xs text-gray-400 text-center">
                 No spam. Your data is used only to prepare your EyeROV deployment assessment.
               </p>
             </form>

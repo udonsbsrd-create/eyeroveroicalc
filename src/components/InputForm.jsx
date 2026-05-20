@@ -74,14 +74,15 @@ export default function InputForm({ onCalculate }) {
   return (
     <div className="max-w-3xl mx-auto">
       {/* Step indicator */}
-      <div className="flex items-center mb-8">
+      <div className="bg-navy-900 rounded-xl px-6 py-4 mb-6">
+      <div className="flex items-center">
         {STEPS.map((label, i) => (
           <React.Fragment key={i}>
             <div className="flex items-center gap-2">
               <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                i < step ? 'bg-teal-500 text-navy-950' :
-                i === step ? 'bg-teal-500 text-navy-950 ring-2 ring-teal-400 ring-offset-2 ring-offset-navy-950' :
-                'bg-navy-700 text-slate-500'
+                i < step ? 'bg-teal-500 text-white' :
+                i === step ? 'bg-teal-500 text-white ring-2 ring-teal-400 ring-offset-2 ring-offset-navy-900' :
+                'bg-navy-700 text-slate-400'
               }`}>{i < step ? '✓' : i + 1}</div>
               <span className={`text-xs font-medium hidden sm:block ${i === step ? 'text-teal-400' : 'text-slate-500'}`}>
                 {label}
@@ -93,9 +94,10 @@ export default function InputForm({ onCalculate }) {
           </React.Fragment>
         ))}
       </div>
+      </div>
 
       <div className="section-card min-h-[380px] flex flex-col">
-        <h2 className="text-lg font-semibold text-slate-200 mb-6">{STEPS[step]}</h2>
+        <h2 className="text-lg font-semibold text-gray-900 mb-6">{STEPS[step]}</h2>
 
         {/* ── STEP 0: Asset & Location ── */}
         {step === 0 && (
@@ -109,8 +111,8 @@ export default function InputForm({ onCalculate }) {
                     onClick={() => set('assetType', asset.id)}
                     className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border transition-all text-center ${
                       inputs.assetType === asset.id
-                        ? 'border-teal-500 bg-teal-500/10 text-teal-300'
-                        : 'border-navy-600 bg-navy-800 text-slate-400 hover:border-navy-500 hover:text-slate-300'
+                        ? 'border-teal-500 bg-teal-500/10 text-teal-500'
+                        : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:text-gray-800'
                     }`}
                   >
                     <span className="text-xl">{asset.icon}</span>
@@ -130,8 +132,8 @@ export default function InputForm({ onCalculate }) {
                     onClick={() => set('market', key)}
                     className={`flex items-center gap-3 p-3 rounded-lg border transition-all text-left ${
                       inputs.market === key
-                        ? 'border-teal-500 bg-teal-500/10 text-teal-300'
-                        : 'border-navy-600 bg-navy-800 text-slate-400 hover:border-navy-500 hover:text-slate-300'
+                        ? 'border-teal-500 bg-teal-500/10 text-teal-500'
+                        : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:text-gray-800'
                     }`}
                   >
                     <span className="text-lg">{m.flag}</span>
@@ -164,9 +166,9 @@ export default function InputForm({ onCalculate }) {
               {errors.depthMetres && <p className="text-red-400 text-xs mt-1">{errors.depthMetres}</p>}
               {depth > 0 && (
                 <div className={`mt-2 flex items-start gap-2 text-xs rounded-lg p-2.5 border ${
-                  depth >= 50 ? 'bg-red-900/20 border-red-800/50 text-red-300' :
-                  depth > 24 ? 'bg-amber-900/20 border-amber-800/50 text-amber-300' :
-                  'bg-teal-900/20 border-teal-800/50 text-teal-300'
+                  depth >= 50 ? 'bg-red-50 border-red-200 text-red-700' :
+                  depth > 24 ? 'bg-amber-50 border-amber-200 text-amber-700' :
+                  'bg-blue-50 border-blue-200 text-blue-700'
                 }`}>
                   {depth >= 50 ? <AlertTriangle size={13} className="mt-0.5 shrink-0" /> : <Info size={13} className="mt-0.5 shrink-0" />}
                   <span>
@@ -181,7 +183,7 @@ export default function InputForm({ onCalculate }) {
             <div>
               <label className="label">
                 Inspection Area / Length
-                {selectedAsset && <span className="text-teal-500 ml-1">({selectedAsset.unit})</span>}
+                {selectedAsset && <span className="text-blue-600 ml-1">({selectedAsset.unit})</span>}
               </label>
               <input
                 type="number"
@@ -203,8 +205,8 @@ export default function InputForm({ onCalculate }) {
                     onClick={() => set('inspectionsPerYear', n)}
                     className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                       inputs.inspectionsPerYear === n
-                        ? 'border-teal-500 bg-teal-500/10 text-teal-300'
-                        : 'border-navy-600 bg-navy-800 text-slate-400 hover:border-navy-500'
+                        ? 'border-teal-500 bg-teal-500/10 text-teal-500'
+                        : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                     }`}
                   >
                     {n}×
@@ -214,16 +216,16 @@ export default function InputForm({ onCalculate }) {
               {errors.inspectionsPerYear && <p className="text-red-400 text-xs mt-1">{errors.inspectionsPerYear}</p>}
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-navy-800 border border-navy-600 rounded-lg">
+            <div className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
               <button
                 onClick={() => set('includeHSERisk', !inputs.includeHSERisk)}
-                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.includeHSERisk ? 'bg-teal-500' : 'bg-navy-600'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.includeHSERisk ? 'bg-teal-500' : 'bg-gray-300'}`}
               >
                 <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${inputs.includeHSERisk ? 'translate-x-5' : 'translate-x-0'}`} />
               </button>
               <div>
-                <div className="text-sm font-medium text-slate-200">Include HSE Incident Risk Provision</div>
-                <div className="text-xs text-slate-500">Adds statistically expected cost of a reportable diving incident</div>
+                <div className="text-sm font-medium text-gray-800">Include HSE Incident Risk Provision</div>
+                <div className="text-xs text-gray-500">Adds statistically expected cost of a reportable diving incident</div>
               </div>
             </div>
           </div>
@@ -234,16 +236,16 @@ export default function InputForm({ onCalculate }) {
           <div className="flex-1 space-y-5">
 
             {/* RaaS Toggle */}
-            <div className="flex items-center gap-3 p-3 bg-navy-800 border border-navy-600 rounded-lg">
+            <div className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
               <button
                 onClick={() => set('isRaaS', !inputs.isRaaS)}
-                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.isRaaS ? 'bg-teal-500' : 'bg-navy-600'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.isRaaS ? 'bg-teal-500' : 'bg-gray-300'}`}
               >
                 <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${inputs.isRaaS ? 'translate-x-5' : 'translate-x-0'}`} />
               </button>
               <div>
-                <div className="text-sm font-medium text-slate-200">RaaS Model (Robotics-as-a-Service)</div>
-                <div className="text-xs text-slate-500">No upfront capital purchase — break-even from 1st inspection</div>
+                <div className="text-sm font-medium text-gray-800">RaaS Model (Robotics-as-a-Service)</div>
+                <div className="text-xs text-gray-500">No upfront capital purchase — break-even from 1st inspection</div>
               </div>
             </div>
 
@@ -252,10 +254,10 @@ export default function InputForm({ onCalculate }) {
               <div>
                 <label className="label">
                   EyeROV Purchase Price
-                  <span className="text-xs text-slate-400 ml-2 font-normal">indicative EyeROV purchase price — contact for exact quote</span>
+                  <span className="text-xs text-gray-400 ml-2 font-normal">indicative EyeROV purchase price — contact for exact quote</span>
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-mono">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-mono">
                     {inputs.market ? MARKETS[inputs.market]?.symbol : '$'}
                   </span>
                   <input
@@ -266,7 +268,7 @@ export default function InputForm({ onCalculate }) {
                     onChange={e => set('rovCapitalCost', e.target.value)}
                   />
                 </div>
-                <p className="text-xs text-slate-500 mt-1.5 flex items-start gap-1.5">
+                <p className="text-xs text-gray-400 mt-1.5 flex items-start gap-1.5">
                   <Info size={11} className="mt-0.5 shrink-0" />
                   Used to calculate how many inspections recover the capital purchase cost vs. continuing to hire divers.
                 </p>
@@ -275,10 +277,10 @@ export default function InputForm({ onCalculate }) {
 
             <div>
               <label className="label">
-                Asset Operational Value Per Day <span className="text-slate-500">(optional)</span>
+                Asset Operational Value Per Day <span className="text-gray-400">(optional)</span>
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-mono">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-mono">
                   {inputs.market ? MARKETS[inputs.market]?.symbol : '$'}
                 </span>
                 <input
@@ -290,7 +292,7 @@ export default function InputForm({ onCalculate }) {
                   onChange={e => set('assetDailyValue', e.target.value)}
                 />
               </div>
-              <p className="text-xs text-slate-500 mt-1.5 flex items-start gap-1.5">
+              <p className="text-xs text-gray-400 mt-1.5 flex items-start gap-1.5">
                 <Info size={11} className="mt-0.5 shrink-0" />
                 If the asset must be taken offline during inspection, enter its daily production/revenue value. 
                 This surfaces the true cost of inspection duration — often the largest single number.
@@ -298,17 +300,17 @@ export default function InputForm({ onCalculate }) {
             </div>
 
             {inputs.market && (
-              <div className="p-4 bg-navy-800 border border-navy-700 rounded-lg space-y-2">
-                <p className="text-xs font-semibold text-teal-400 uppercase tracking-wider">Market Parameters Applied</p>
+              <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg space-y-2">
+                <p className="text-xs font-semibold text-teal-500 uppercase tracking-wider">Market Parameters Applied</p>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
-                  <span className="text-slate-500">Regulation framework</span>
-                  <span className="text-slate-200 font-medium">{MARKETS[inputs.market]?.regulationFull}</span>
-                  <span className="text-slate-500">Weather loss rate</span>
-                  <span className="text-slate-200">{(getWeatherFraction(inputs.market, inputs.assetType) * 100).toFixed(0)}% of planned dive days</span>
-                  <span className="text-slate-500">HSE incident probability</span>
-                  <span className="text-slate-200">1.8% per diver-year (IMCA industry rate)</span>
-                  <span className="text-slate-500">Currency</span>
-                  <span className="text-slate-200">{MARKETS[inputs.market]?.currency}</span>
+                  <span className="text-gray-500">Regulation framework</span>
+                  <span className="text-gray-800 font-medium">{MARKETS[inputs.market]?.regulationFull}</span>
+                  <span className="text-gray-500">Weather loss rate</span>
+                  <span className="text-gray-800">{(getWeatherFraction(inputs.market, inputs.assetType) * 100).toFixed(0)}% of planned dive days</span>
+                  <span className="text-gray-500">HSE incident probability</span>
+                  <span className="text-gray-800">1.8% per diver-year (IMCA industry rate)</span>
+                  <span className="text-gray-500">Currency</span>
+                  <span className="text-gray-800">{MARKETS[inputs.market]?.currency}</span>
                 </div>
               </div>
             )}
@@ -324,7 +326,7 @@ export default function InputForm({ onCalculate }) {
         )}
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-8 pt-4 border-t border-navy-700">
+        <div className="flex items-center justify-between mt-8 pt-4 border-t border-gray-200">
           <button
             onClick={back}
             disabled={step === 0}
