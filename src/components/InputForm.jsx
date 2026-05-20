@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, ChevronLeft, Info, AlertTriangle } from 'lucide-react';
 import { MARKETS, ASSET_TYPES } from '../utils/marketData';
-import { getBottomTime, getDiveType } from '../utils/divingTables';
+import { getBottomTime, getDiveType, getWeatherFraction } from '../utils/divingTables';
 
 const STEPS = ['Asset & Location', 'Inspection Details', 'Financial Parameters'];
 
@@ -304,9 +304,9 @@ export default function InputForm({ onCalculate }) {
                   <span className="text-slate-500">Regulation framework</span>
                   <span className="text-slate-200 font-medium">{MARKETS[inputs.market]?.regulationFull}</span>
                   <span className="text-slate-500">Weather loss rate</span>
-                  <span className="text-slate-200">{(MARKETS[inputs.market]?.diving.weatherLossFraction * 100).toFixed(0)}% of planned dive days</span>
+                  <span className="text-slate-200">{(getWeatherFraction(inputs.market, inputs.assetType) * 100).toFixed(0)}% of planned dive days</span>
                   <span className="text-slate-500">HSE incident probability</span>
-                  <span className="text-slate-200">{(MARKETS[inputs.market]?.diving.hseIncidentProbability * 100).toFixed(1)}% per inspection</span>
+                  <span className="text-slate-200">1.8% per diver-year (IMCA industry rate)</span>
                   <span className="text-slate-500">Currency</span>
                   <span className="text-slate-200">{MARKETS[inputs.market]?.currency}</span>
                 </div>
